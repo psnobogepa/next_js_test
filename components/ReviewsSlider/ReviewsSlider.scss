@@ -1,0 +1,79 @@
+.mySwiper {
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mySwiper .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reviews-section .swiper-button-next,
+.reviews-section .swiper-button-prev {
+  color: #0d6efd !important;
+  background: white !important;
+  width: 45px !important;
+  height: 45px !important;
+  border-radius: 50% !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.reviews-section .swiper-button-next::after,
+.reviews-section .swiper-button-prev::after {
+  font-size: 18px !important;
+  font-weight: bold;
+}
+
+.reviews-section .swiper-pagination-bullet {
+  background: #dee2e6 !important;
+  opacity: 1 !important;
+  width: 12px !important;
+  height: 12px !important;
+}
+
+.reviews-section .swiper-pagination-bullet-active {
+  background: #0d6efd !important;
+}
+
+.mySwiper {
+  overflow: hidden;
+}
+
+.mySwiper .swiper-wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
+.mySwiper .swiper-slide {
+  flex-shrink: 0;
+  width: 100%;
+  height: auto;
+}
+
+.reviews-section .swiper-button-next,
+.reviews-section .swiper-button-prev {
+  z-index: 10;
+  cursor: pointer;
+}
+
+.reviews-section .swiper-button-disabled {
+  opacity: 0.35;
+  cursor: auto;
+  pointer-events: none;
+}
+
