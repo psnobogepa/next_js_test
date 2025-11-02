@@ -1,8 +1,12 @@
 'use strict';
 
+const cronTasks = require('./cron/tasks');
+
 module.exports = {
   register() {},
 
-  bootstrap() {},
+  async bootstrap({ strapi }) {
+    cronTasks.init(strapi);
+  },
 };
 
