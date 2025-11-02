@@ -27,6 +27,17 @@
   animation: slideDown 0.3s ease-out;
 }
 
+.errorMessageBlock {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  border: 1px solid #f5c2c7;
+  text-align: center;
+  animation: slideDown 0.3s ease-out;
+}
+
 @keyframes slideDown {
   from {
     opacity: 0;

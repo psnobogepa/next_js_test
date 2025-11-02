@@ -1,6 +1,7 @@
 import HeroSlider from '../components/HeroSlider/HeroSlider'
 import ReviewsSlider from '../components/ReviewsSlider/ReviewsSlider'
 import ContactForm from '../components/ContactForm/ContactForm'
+import CommentsList from '../components/CommentsList/CommentsList'
 import './page.scss'
 
 export default function Home() {
@@ -71,6 +72,8 @@ export default function Home() {
       </section>
 
       <ContactForm />
+      
+      <CommentsList />
     </main>
   )
 }

@@ -4,9 +4,12 @@ import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import styles from './ContactForm.module.scss'
 
+const STRAPI_API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'
+
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [submitError, setSubmitError] = useState(null)
   
   const {
     register,
@@ -17,12 +20,43 @@ export default function ContactForm() {
 
   const onSubmit = async (data) => {
     setIsSubmitting(true)
+    setSubmitError(null)
     
-    setTimeout(() => {
+    try {
+      const response = await fetch(`${STRAPI_API_URL}/api/comments`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          data: {
+            name: data.name,
+            email: data.email,
+            phone: data.phone || null,
+            message: data.message,
+          },
+        }),
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}))
+        throw new Error(errorData.error?.message || 'Ошибка при отправке сообщения')
+      }
+
       setIsSubmitting(false)
       setSubmitSuccess(true)
       reset()
-    }, 1500);
+
+      window.location.reload()
+      
+      setTimeout(() => {
+        setSubmitSuccess(false)
+      }, 5000)
+    } catch (error) {
+      setIsSubmitting(false)
+      setSubmitError(error.message || 'Произошла ошибка при отправке сообщения')
+      console.error('Error submitting form:', error)
+    }
   }
 
   return (
@@ -37,6 +71,12 @@ export default function ContactForm() {
           {submitSuccess && (
             <div className={styles.successMessage}>
               ✅ Спасибо! Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.
+            </div>
+          )}
+
+          {submitError && (
+            <div className={styles.errorMessageBlock}>
+              ❌ {submitError}
             </div>
           )}
 
